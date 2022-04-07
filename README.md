@@ -136,3 +136,24 @@ iTerm2 をターゲットに開発してるけどいくつか環境ごとの個�
 - ESC キーを認識しない端末エミュレータが多々ある (Ctrl + xで代用可)
 - 文字入力バックスペース押すと消した文字が残ったりすることがある
 - 文字入力で途中挿入ができないから出来るようにしたい
+
+
+## Twitter Apps 及び API Key について
+
+Twitter Apps (Twim Client) 及び､このアプリケーションに紐付く API Key (アクセストークン除く) は当リポジトリの所有者である gretchi 及び @Gretel_net に帰属するものであり､一切の二次利用を認めない｡
+
+当アプリケーションの通常利用及び､ 当リポジトリの開発に利用する場合は一次利用の範囲内として API Key の使用を許諾する
+
+### API Key 変更の手引き
+
+Consumer Key(以下CK), Consumer Secret(以下CS) は暗号化された状態で `./api_key` に格納されています｡
+`./api_key` 以下ディレクトリについては､ GNU Lesser General Public License が適用されていますので､ CK, CS の変更含む改変時には `./api_key` 以下のソースコードを公開する義務があります｡
+
+暗号化及び復号に使用するパスワードは `ConsumerKeys()` の呼び出し時の引数と `./api_key/__init__.py` 内部の値によって生成されます｡ twim 本体は MIT License が適用されているため改変時においてもソースコードの公開の義務は発生しません｡ `ConsumerKeys` の呼び出し時､ `secret` に任意の文字列を指定することで CK, CS を秘匿することが可能です｡
+
+ConsumerKeys の全ての引数をセットした状態で､ `api_key_encrypt.py` の引数に CK, CS を渡すことで暗号化された状態の CK, CS ならびに nonce が得られます｡得られた内容は `./api_key/__init__.py` に貼り付けてください｡
+
+```sh
+$ ./api_key_encrypt.py
+Usage: ./api_key_encrypt.py <CONSUMER_KEY> <CONSUMER_SECRET>
+```

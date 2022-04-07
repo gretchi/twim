@@ -15,7 +15,9 @@ from twitter import Twitter
 from operation import Operation
 from const import const
 from util import system_message
+from api_key import ConsumerKeys
 
+__APP_NAME__     = "twim"
 __copyright__    = 'Copyright (C) 2019 syamamura'
 __version__      = '1.0.0'
 __license__      = 'MIT License'
@@ -27,18 +29,15 @@ os.makedirs("./log/", exist_ok=True)
 logging.basicConfig(filename="./log/twim.log", level=logging.INFO, format='%(levelname)s: %(asctime)s: %(message)s')
 locale.setlocale(locale.LC_ALL, '')
 
-
-# Twim-Client
-CONSUMER_API_KEY = "q04UcTYpljTrzizsGYi4v0Prq"
-CONSUMER_API_SECRET = "RnwgewYPjcIYvYXpsTzxHYgbBwMucZ8BkkKGHoU4uFBjtJXD8A"
-
 TIMEZONE = "Asia/Tokyo"
+
+ck =  ConsumerKeys(__APP_NAME__, "love and peace", __author__, __author_email__, __url__)
 
 class Twim(object):
     def __init__(self, stdscr):
         self.screen = Screen(stdscr)
         self.timezone = TIMEZONE
-        self.twitter  = Twitter(CONSUMER_API_KEY, CONSUMER_API_SECRET, self.timezone)
+        self.twitter  = Twitter(ck.consumer_key, ck.consumer_secret, self.timezone)
         self.operation = Operation(self.screen, stdscr, self.twitter)
 
 
