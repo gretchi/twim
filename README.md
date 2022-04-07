@@ -4,6 +4,8 @@
 Windows の Twitter クライアントである Tween と vim にインスパイアされて作ったよ
 
 
+![logo image](./docs/twim_logo.png)
+
 ![screen shot image](./docs/ss_000.png)
 ## usage
 
